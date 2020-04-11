@@ -55,7 +55,7 @@ def cmd_line_parse():
 
     parser.add_argument(
         '--categories',
-        '-c',
+        '-g',
         required=False,
         type=str,
         dest='categories',
@@ -78,15 +78,9 @@ def main():
     # get command line args
     cmd_line_args = cmd_line_parse()
 
-    city_list = cmd_line_args.cities.split(',')
-
-    # TODO: For each requested city need to create tuple of (city, state) using cities table
-    # city_list = ['new york', 'boston']
-    # in_list = "'new york', 'boston'"
-    in_list = ', '.join(map(lambda x: "'" + x + "'", city_list))
-    sql = 'SELECT * FROM cities WHERE city_name in (' + in_list + ');'
-    # returns state_abbr and city_name  -->  
-    # both needed to eventful api to get events in these cities
+    # remove leading and trailing spaces from each input city argument
+    tmp_city_list = cmd_line_args.cities.split(',')
+    city_list = [x.strip(' ') for x in tmp_city_list]
 
     # get valid categories
     valid_categories = set()
@@ -96,9 +90,26 @@ def main():
     category_list = None
     if cmd_line_args.categories:
         input_categories = set(cmd_line_args.categories.split(','))
-        category_list = list(valid_categories.intersection(input_categories))
+        tmp_category_list = list(valid_categories.intersection(input_categories))
+        category_list = [x.strip(' ') for x in tmp_category_list]
+
+    # display input cities and categories
+    msg = 'Cities: {0}'.format(','.join(city_list))
+    module_logger.info(msg)
+
+    if category_list:
+        msg = 'Categories: {0}'.format(','.join(category_list))
+    else:
+        msg = 'Categories: All'
+    module_logger.info(msg)
 
     event_obj = GetEvent(city_list, category_list, module_logger)
 
+    event_obj.run()
 
+    module_logger.info('<<<<< Done >>>>>')
     
+
+if __name__ == '__main__':
+    main()
+    sys.exit(0)
