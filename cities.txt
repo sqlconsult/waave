@@ -1,0 +1,51 @@
+abbreviation~name~capital~major_cities
+AL~Alabama~Montgomery~Birmingham,Montgomery,Mobile,Huntsville,Tuscaloosa
+AK~Alaska~Juneau~Anchorage,Fairbanks,Juneau,Sitka,Ketchikan
+AZ~Arizona~Phoenix~Phoenix,Tucson,Mesa,Chandler,Glendale
+AR~Arkansas~Little Rock~Little Rock,Fort Smith,North Little Rock,Fayetteville,Springdale
+CA~California~Sacramento~Los Angeles,San Diego,San Jose,San Francisco,Fresno
+CO~Colorado~Denver~Denver,Colorado Springs,Aurora,Fort Collins,Lakewood
+CT~Connecticut~Hartford~Bridgeport,New Haven,Hartford,Stamford,Waterbury
+DE~Delaware~Dover~Wilmington,Dover,Newark,Middletown,Smyrna
+FL~Florida~Tallahassee~Jacksonville,Miami,Tampa,St. Petersburg,Orlando
+GA~Georgia~Atlanta~Atlanta,Augusta-Richmond,Columbus,Savannah,Athens
+HI~Hawaii~Honolulu~Honolulu,Hilo,Kailua,Kapolei,Kaneohe
+ID~Idaho~Boise~Boise,Nampa,Meridian,Idaho Falls,Pocatello
+IL~Illinois~Springfield~Chicago,Aurora,Rockford,Joliet,Naperville
+IN~Indiana~Indianapolis~Indianapolis,Fort Wayne,Evansville,South Bend,Hammond
+IA~Iowa~Des Moines~Des Moines,Cedar Rapids,Davenport,Sioux City,Waterloo
+KS~Kansas~Topeka~Wichita,Overland Park,Kansas City,Topeka,Olathe
+KY~Kentucky~Frankfort~Louisville,Lexington,Bowling Green,Owensboro,Covington
+LA~Louisiana~Baton Rouge~New Orleans,Baton Rouge,Shreveport,Lafayette,Lake Charles
+ME~Maine~Augusta~Portland,Lewiston,Bangor,South Portland,Auburn
+MD~Maryland~Annapolis~Baltimore,Frederick,Rockville,Gaithersburg,Bowie
+MA~Massachusetts~Boston~Boston,Worcester,Springfield,Lowell,Cambridge
+MI~Michigan~Lansing~Detroit,Grand Rapids,Warren,Sterling Heights,Lansing
+MN~Minnesota~Saint Paul~Minneapolis,Saint Paul,Rochester,Duluth,Bloomington
+MS~Mississippi~Jackson~Jackson,Gulfport,Hattiesburg,Southaven,Biloxi
+MO~Missouri~Jefferson City~Kansas City,Saint Louis,Springfield,Independence,Columbia
+MT~Montana~Helena~Billings,Missoula,Great Falls,Bozeman,Butte
+NE~Nebraska~Lincoln~Omaha,Lincoln,Bellevue,Grand Island,Kearney
+NV~Nevada~Carson City~Las Vegas,Henderson,North Las Vegas,Reno,Sparks
+NH~New Hampshire~Concord~Manchester,Nashua,Concord,Derry,Rochester
+NJ~New Jersey~Trenton~Newark,Jersey City,Paterson,Elizabeth,Edison
+NM~New Mexico~Santa Fe~Albuquerque,Las Cruces,Rio Rancho,Santa Fe,Roswell
+NY~New York~Albany~New York,Buffalo,Rochester,Yonkers,Syracuse
+NC~North Carolina~Raleigh~Charlotte,Raleigh,Greensboro,Winston-Salem,Durham
+ND~North Dakota~Bismarck~Fargo,Bismarck,Grand Forks,Minot,West Fargo
+OH~Ohio~Columbus~Columbus,Cleveland,Cincinnati,Toledo,Akron
+OK~Oklahoma~Oklahoma City~Oklahoma City,Tulsa,Norman,Broken Arrow,Lawton
+OR~Oregon~Salem~Portland,Eugene,Salem,Gresham,Hillsboro
+PA~Pennsylvania~Harrisburg~Philadelphia,Pittsburgh,Allentown,Erie,Reading
+RI~Rhode Island~Providence~Providence,Warwick,Cranston,Pawtucket,East Providence
+SC~South Carolina~Columbia~Columbia,Charleston,North Charleston,Mount Pleasant,Rock Hill
+SD~South Dakota~Pierre~Sioux Falls,Rapid City,Aberdeen,Brookings,Watertown
+TN~Tennessee~Nashville~Memphis,Nashville,Knoxville,Chattanooga,Clarksville
+TX~Texas~Austin~Houston,San Antonio,Dallas,Austin,Fort Worth
+UT~Utah~Salt Lake City~Salt Lake City,West Valley City,Provo,West Jordan,Orem
+VT~Vermont~Montpelier~Burlington,Essex,South Burlington,Colchester,Rutland
+VA~Virginia~Richmond~Virginia Beach,Norfolk,Chesapeake,Richmond,Newport News
+WA~Washington~Olympia~Seattle,Spokane,Tacoma,Vancouver,Bellevue
+WV~West Virginia~Charleston~Charleston,Huntington,Parkersburg,Morgantown,Wheeling
+WI~Wisconsin~Madison~Milwaukee,Madison,Green Bay,Kenosha,Racine
+WY~Wyoming~Cheyenne~Cheyenne,Casper,Laramie,Gillette,Rock Springs
