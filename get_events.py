@@ -100,13 +100,10 @@ class GetEvent:
                     if evt['start_time']:
                         start_time = str(evt['start_time'])
 
-
                     evt_tuple = (str(evt['region_abbr']),
-                        str(evt['postal_code']),
-                        float(evt['latitude']),
+                        str(evt['postal_code']),                        
                         str(evt['id']),
-                        str(evt['city_name']),
-                        float(evt['longitude']),
+                        str(evt['city_name']),                        
                         str(evt['country_name']),
                         str(evt['country_abbr']),
                         str(evt['region_name']),
@@ -115,7 +112,9 @@ class GetEvent:
                         venue_address,
                         str(evt['venue_id']),
                         stop_time,
-                        venue_name)
+                        venue_name,
+                        float(evt['latitude']),
+                        float(evt['longitude']))
 
                     events.append(evt_tuple)
 
@@ -137,26 +136,55 @@ class GetEvent:
             events = []
 
     def save_events_to_db(self, cxn, db_obj, events):
-        sql = """INSERT INTO events (
-                        region_abbr, postal_code, latitude,     id,
-                        city_name,   longitude,   country_name, country_abbr,
-                        region_name, start_time,  title,        venue_address,
-                        venue_id,    stop_time,   venue_name) 
-                    VALUES ( %s, %s, %s, %s, 
-                            %s, %s, %s, %s, 
-                            %s, %s, %s, %s,
-                            %s, %s, %s)
-                """
-        try:
-            affected_rows = db_obj.exec_many_qry(sql, events)
-        except Exception as ex:
-            msg = 'Exception: {ex}'.format(ex=ex)
-            self.logger.error(msg)
-            for i, t in enumerate(events):
-                msg = '{0} {1}'.format(i, t)
-                self.logger.error(msg)
+        for evt in events:
+            stop_time = evt[11]
+            if not stop_time:
+                stop_time = "NULL"
 
-        self.logger.info("Number of events inserted: {0:,}".format(affected_rows))
+            title = evt[8]
+            if title:
+                if "'" in title:
+                    title = title.replace("'", '')
+                if '\\' in title:
+                    title = title.replace("\\", '-')
+
+            venue_address = evt[9]
+            if venue_address and "'" in venue_address:
+                venue_address = venue_address.replace("'", '')
+
+            venue_name = evt[12]
+            if venue_name and "'" in venue_name:
+                venue_name = venue_name.replace("'", '')
+
+            sql = "INSERT INTO events ( " \
+                  "region_abbr,   postal_code,  event_identifier, " \
+                  "city_name,     country_name, country_abbr, " \
+                  "region_name,   start_time,   title, " \
+                  "venue_address, venue_id,     stop_time," \
+                  "venue_name,    event_location ) "\
+                  "VALUES ( '{0}', '{1}', '{2}', " \
+                           "'{3}', '{4}', '{5}', " \
+                           "'{6}', '{7}', '{8}', " \
+                           "'{9}', '{10}', {11}, " \
+                           "'{12}', POINT({13}, {14}))".format( \
+                    evt[0], evt[1], evt[2],
+                    evt[3], evt[4], evt[5],
+                    evt[6], evt[7], title,
+                    venue_address, evt[10], stop_time,
+                    venue_name, evt[13], evt[14])
+
+            try:
+                db_obj.exec_qry(sql)
+            except Exception as ex:
+                msg = 'Insert into events table failes.  Exception: {0}'.format(ex)
+                self.logger.error(msg)
+                msg = 'SQL: {0}'.format(sql)
+                self.logger.error(msg)
+                sys.exit(0)
+
+        db_obj.cxn.commit()
+
+        self.logger.info("Number of events inserted: {0:,}".format(len(events)))
 
 
     def get_city_state_list(self, cxn):

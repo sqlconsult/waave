@@ -18,8 +18,8 @@ def cmd_line_parse():
         required=False,
         type=str,
         dest='flights',
-        help='Comma separated airport list (example, KJFK,KLGA,KEWR). Default=KJFK',
-        default='KJFK')
+        help='Comma separated airport list (example, KJFK,KLGA,KEWR). Default=None',
+        default=None)
 
     parser.add_argument(
         '--airports',
@@ -35,7 +35,7 @@ def cmd_line_parse():
         required=False,
         action='store_true',
         dest='airlines',
-        help='Refill airports database table using AllAirlines and AirlineInfo API')
+        help='Refill airlines database table using AllAirlines and AirlineInfo API')
 
     args = parser.parse_args()
 

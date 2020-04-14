@@ -32,7 +32,7 @@ class AirportImporter():
         cursor = cnx.cursor()
         cursor.execute('TRUNCATE TABLE airports')
         cursor.close
-        print('Truncated my_db.airports')
+        self.logger.info('Truncated my_db.airports')
 
 
     def fill_airports_table(self, cxn):
@@ -49,9 +49,16 @@ class AirportImporter():
             line_count = 0
             for input_row in csv_reader:
 
+                if not input_row:
+                    msg = 'Line number {0:,} is empty'.format(line_count)
+                    self.logger.info(msg)
+                    sys.exit(0)
+
                 line_count += 1
+
                 if line_count % 500 == 0:
-                    print('Processing input line # {0:}'.format(line_count))
+                    msg = 'Processing input line # {0:}'.format(line_count)
+                    self.logger.info(msg)
                 # remove apostrophes from any input column
                 clean_row = '~'.join(input_row)
                 clean_row = clean_row.replace("'", "")
@@ -66,22 +73,24 @@ class AirportImporter():
                 municipality = ''.join(filter(lambda x: x in printable, row[10]))
 
                 try:
-                    cursor.execute(
-                        """
+                    sql = """
                         INSERT INTO airports (
-                            id,           ident,         airport_type, name, 
-                            latitude_deg, longitude_deg, elevation_ft, continent, 
-                            iso_country,  iso_region,    municipality, scheduled_service,
-                            icao_code,    iata_code ) VALUES (
-                            {0}, '{1}', '{2}', '{3}',
-                            {4}, {5}, {6}, '{7}',
+                            id,           ident,             airport_type, airport_name, 
+                            elevation_ft, continent,         iso_country,  iso_region,
+                            municipality, scheduled_service, icao_code,    iata_code,
+                            airport_location ) VALUES (
+                             {0},  '{1}', '{2}',  '{3}',
+                             {4},  '{5}', '{6}',  '{7}',
                             '{8}', '{9}', '{10}', '{11}',
-                            '{12}', '{13}' )
+                            POINT ({12}, {13}) );
                         """.format(
-                        row[0], row[1], row[2], name,
-                        latitude, longitude, elevation, row[7],
-                        row[8], row[9], municipality, row[11],
-                        row[12], row[13] ))
+                        row[0],       row[1],  row[2],  name,
+                        elevation,    row[7],  row[8],  row[9], 
+                        municipality, row[11], row[12], row[13],
+                        latitude,     longitude)
+
+                    cursor.execute(sql)
+
                 except Exception as ex:
                     msg = 'Exception: {ex}'.format(ex=ex)
                     self.logger.error(msg)
