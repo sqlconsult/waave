@@ -157,11 +157,11 @@ class GetEvent:
                 venue_name = venue_name.replace("'", '')
 
             sql = "INSERT INTO events ( " \
-                  "region_abbr,   postal_code,  event_identifier, " \
+                  "region_abbr,   postal_code,  e_id, " \
                   "city_name,     country_name, country_abbr, " \
                   "region_name,   start_time,   title, " \
                   "venue_address, venue_id,     stop_time," \
-                  "venue_name,    event_location ) "\
+                  "venue_name,    location ) "\
                   "VALUES ( '{0}', '{1}', '{2}', " \
                            "'{3}', '{4}', '{5}', " \
                            "'{6}', '{7}', '{8}', " \
